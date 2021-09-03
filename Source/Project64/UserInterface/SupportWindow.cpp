@@ -117,7 +117,7 @@ LRESULT CSupportWindow::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*
     int32_t	Top = (GetSystemMetrics(SM_CYSCREEN) - rcWin.Height()) / 2;
 
     MoveWindow(Left, Top, rcWin.Width(), rcWin.Height(), TRUE);
-
+    /*
     if (m_Delay && m_Support.RunCount() >= 15)
     {
         CMenuHandle menu = GetSystemMenu(false);
@@ -130,6 +130,7 @@ LRESULT CSupportWindow::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*
         srand ((uint32_t)time(nullptr));
         SetTimer(0, 1000, nullptr);
     }
+    */
     return TRUE;
 }
 
