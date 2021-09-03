@@ -2377,6 +2377,11 @@ void CN64System::RefreshScreen()
         }
     }
 
+    if (g_Plugins->LowLevel()->OnFrame)
+    {
+        g_Plugins->LowLevel()->OnFrame(m_Buttons);
+    }
+
     if (bShowCPUPer()) { m_CPU_Usage.StartTimer(Timer_UpdateScreen); }
 
     __except_try()

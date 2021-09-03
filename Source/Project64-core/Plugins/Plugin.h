@@ -87,7 +87,7 @@ enum PLUGIN_TYPE
 };
 
 class CSettings;
-class CGfxPlugin; class CAudioPlugin; class CRSP_Plugin; class CControl_Plugin;
+class CGfxPlugin; class CAudioPlugin; class CRSP_Plugin; class CControl_Plugin; class CLowLevel_Plugin;
 class CN64System;
 class CPlugins;
 
@@ -134,6 +134,7 @@ public:
     inline CAudioPlugin * Audio(void) const { return m_Audio; }
     inline CRSP_Plugin * RSP(void) const { return m_RSP; }
     inline CControl_Plugin * Control(void) const { return m_Control; }
+    inline CLowLevel_Plugin * LowLevel(void) const { return m_LowLevel; }
 
     inline RenderWindow * MainWindow(void) const { return m_MainWindow; }
     inline RenderWindow * SyncWindow(void) const { return m_SyncWindow; }
@@ -149,6 +150,7 @@ private:
     void DestroyAudioPlugin(void);
     void DestroyRspPlugin(void);
     void DestroyControlPlugin(void);
+    void DestroyLowLevelPlugin(void);
 
     static void PluginChanged(CPlugins * _this);
 
@@ -159,10 +161,11 @@ private:
     stdstr m_PluginDir;
 
     // Plugins
-    CGfxPlugin      * m_Gfx;
-    CAudioPlugin    * m_Audio;
-    CRSP_Plugin     * m_RSP;
-    CControl_Plugin * m_Control;
+    CGfxPlugin       * m_Gfx;
+    CAudioPlugin     * m_Audio;
+    CRSP_Plugin      * m_RSP;
+    CControl_Plugin  * m_Control;
+    CLowLevel_Plugin * m_LowLevel;
 
     stdstr m_GfxFile;
     stdstr m_AudioFile;

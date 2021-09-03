@@ -6,3 +6,4 @@
 #include <Project64-core/Plugins/AudioPlugin.h>
 #include <Project64-core/Plugins/ControllerPlugin.h>
 #include <Project64-core/Plugins/RSPPlugin.h>
+#include <Project64-core/Plugins/LowLevelPlugin.h>
