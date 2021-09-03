@@ -92,8 +92,19 @@ void ChangeSize()
     g_width = g_ScreenWidth;
     g_height = g_ScreenHeight;
 #else
-    g_width = ev_fullscreen ? GetFullScreenResWidth(g_settings->FullScreenRes()) : GetScreenResWidth(g_settings->ScreenRes());
-    g_height = ev_fullscreen ? GetFullScreenResHeight(g_settings->FullScreenRes()) : GetScreenResHeight(g_settings->ScreenRes());
+    if (ev_fullscreen)
+    {
+        MONITORINFO monitorInfo;
+        monitorInfo.cbSize = sizeof(monitorInfo);
+        GetMonitorInfo(MonitorFromWindow((HWND)gfx.hWnd, MONITOR_DEFAULTTONEAREST), &monitorInfo);
+        g_width = monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left;
+        g_height = monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top;
+    }
+    else
+    {
+        g_width = GetScreenResWidth(g_settings->ScreenRes());
+        g_height = GetScreenResHeight(g_settings->ScreenRes());
+    }
 #endif
     g_scr_res_x = g_res_x = g_width;
     g_scr_res_y = g_res_y = g_height;
@@ -355,21 +366,21 @@ void SetWindowDisplaySize(HWND hWnd)
         g_windowedExStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
         g_windowedStyle = GetWindowLong(hWnd, GWL_STYLE);
 
-        // primary monitor only
-        if (!EnterFullScreen(g_settings->FullScreenRes()))
-        {
-            WriteTrace(TraceGlitch, TraceWarning, "can't change to fullscreen mode");
-        }
-
         g_windowedMenu = GetMenu(hWnd);
         if (g_windowedMenu) SetMenu(hWnd, nullptr);
 
         HWND hStatusBar = FindWindowEx(hWnd, nullptr, L"msctls_statusbar32", nullptr); // 1964
         if (hStatusBar) ShowWindow(hStatusBar, SW_HIDE);
 
+        MONITORINFO monitorInfo;
+        monitorInfo.cbSize = sizeof(monitorInfo);
+        GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST), &monitorInfo);
+        g_width = monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left;
+        g_height = monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top;
+
         SetWindowLong(hWnd, GWL_STYLE, 0);
         SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_APPWINDOW | WS_EX_TOPMOST);
-        SetWindowPos(hWnd, nullptr, 0, 0, g_width, g_height, SWP_NOACTIVATE | SWP_NOZORDER | SWP_SHOWWINDOW);
+        SetWindowPos(hWnd, nullptr, monitorInfo.rcMonitor.left, monitorInfo.rcMonitor.top, g_width, g_height, SWP_NOACTIVATE | SWP_NOZORDER | SWP_SHOWWINDOW);
 
         g_viewport_offset = 0;
         g_fullscreen = true;
