@@ -268,6 +268,10 @@ void CN64System::ExternalEvent(SystemEvent action)
         }
         break;
     case SysEvent_ResumeCPU_Settings:
+        if (!g_Settings->LoadBool(GameRunning_CPU_Paused))
+        {
+            DequeueEvent(SysEvent_PauseCPU_Settings);
+        }
         if (g_Settings->LoadDword(GameRunning_CPU_PausedType) == PauseType_Settings)
         {
             m_hPauseEvent.Trigger();
