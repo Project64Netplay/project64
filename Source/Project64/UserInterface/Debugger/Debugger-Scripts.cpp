@@ -125,6 +125,10 @@ DWORD WINAPI CDebugScripts::ScriptDirWatchProc(void* ctx)
             return 0;
         }
     }
+
+done:
+    FindCloseChangeNotification(hEvents[0]);
+    return 0;
 }
 
 void CDebugScripts::OnExitSizeMove(void)
@@ -272,7 +276,7 @@ LRESULT CDebugScripts::OnScriptListRClicked(NMHDR* pNMHDR)
     {
         EnableMenuItem(hPopupMenu, ID_POPUP_STOP, MF_DISABLED | MF_GRAYED);
     }
-    
+
     POINT mouse;
     GetCursorPos(&mouse);
     TrackPopupMenu(hPopupMenu, TPM_LEFTALIGN, mouse.x, mouse.y, 0, m_hWnd, nullptr);
@@ -320,7 +324,7 @@ LRESULT CDebugScripts::OnScriptListCustomDraw(NMHDR* pNMHDR)
 LRESULT CDebugScripts::OnScriptListItemChanged(NMHDR* pNMHDR)
 {
     NMLISTVIEW* lpStateChange = reinterpret_cast<NMLISTVIEW*>(pNMHDR);
-    if ((lpStateChange->uNewState ^  lpStateChange->uOldState) & LVIS_SELECTED)
+    if ((lpStateChange->uNewState ^ lpStateChange->uOldState) & LVIS_SELECTED)
     {
         if (lpStateChange->iItem == -1)
         {
@@ -344,23 +348,9 @@ LRESULT CDebugScripts::OnScriptListItemChanged(NMHDR* pNMHDR)
 
 LRESULT CDebugScripts::OnConsoleLog(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-    const char *text = (const char*)wParam;
-
-    ::ShowWindow(*this, SW_SHOWNOACTIVATE);
-
-    SCROLLINFO scroll;
-    scroll.cbSize = sizeof(SCROLLINFO);
-    scroll.fMask = SIF_ALL;
-    m_ConsoleEdit.GetScrollInfo(SB_VERT, &scroll);
-
-    m_ConsoleEdit.SetRedraw(FALSE);
-    m_ConsoleEdit.AppendText(stdstr(text).ToUTF16().c_str());
-    m_ConsoleEdit.SetRedraw(TRUE);
-
-    if ((scroll.nPage + scroll.nPos) - 1 == (uint32_t)scroll.nMax)
-    {
-        m_ConsoleEdit.ScrollCaret();
-    }
+    char* text = (char*)wParam;
+    m_ConOutputBuffer += text;
+    free(text);
     return FALSE;
 }
 
@@ -388,11 +378,16 @@ LRESULT CDebugScripts::OnRefreshList(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*
 
     do
     {
-        stdstr scriptFileName = SearchPath.GetNameExtension();
-        INSTANCE_STATE state = m_Debugger->ScriptSystem()->GetInstanceState(scriptFileName.c_str());
-        const wchar_t *statusIcon = L"";
+        if (searchPath.GetExtension() != "js")
+        {
+            continue;
+        }
 
-        switch (state)
+        stdstr scriptFileName = searchPath.GetNameExtension();
+        JSInstanceStatus status = m_Debugger->ScriptSystem()->GetStatus(scriptFileName.c_str());
+        const wchar_t* statusIcon = L"";
+
+        switch (status)
         {
         case STATE_STARTED:
             statusIcon = L"*";
@@ -539,4 +534,31 @@ LRESULT CEditEval::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BO
     }
     bHandled = FALSE;
     return 0;
+}
+
+void CDebugScripts::OnTimer(UINT_PTR nIDEvent)
+{
+    if (nIDEvent == CONFLUSH_TIMER_ID)
+    {
+        if (m_ConOutputBuffer == "")
+        {
+            return;
+        }
+
+        SCROLLINFO scroll;
+        scroll.cbSize = sizeof(SCROLLINFO);
+        scroll.fMask = SIF_ALL;
+        m_ConOutputEdit.GetScrollInfo(SB_VERT, &scroll);
+
+        m_ConOutputEdit.SetRedraw(FALSE);
+        m_ConOutputEdit.AppendText(m_ConOutputBuffer.ToUTF16().c_str());
+        m_ConOutputEdit.SetRedraw(TRUE);
+
+        if ((scroll.nPage + scroll.nPos) - 1 == (uint32_t)scroll.nMax)
+        {
+            m_ConOutputEdit.ScrollCaret();
+        }
+
+        m_ConOutputBuffer = "";
+    }
 }

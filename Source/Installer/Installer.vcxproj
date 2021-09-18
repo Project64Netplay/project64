@@ -28,21 +28,23 @@
     <ClCompile>
       <PrecompiledHeader />
     </ClCompile>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)Source/Script/package_zip.cmd" Project64-MPN.zip</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <CustomBuild Include="Installer.iss">
-      <Command>"$(Root)bin\Inno Setup\ISCC.exe" /dConfiguration="$(Configuration)" "%(Filename).iss"</Command>
-      <AdditionalInputs>$(OutDir)Project64.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs>$(OutDir)Setup Project64 2.2.exe;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JoinSettings\JoinSettings.vcxproj">
       <Project>{b2e592f2-f416-4049-bd22-9ca9090242bb}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <ProjectReference Include="..\Project64\Project64.vcxproj">
       <Project>{7e534c8e-1ace-4a88-8807-39a11ed4da18}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
   </ItemGroup>
 </Project>

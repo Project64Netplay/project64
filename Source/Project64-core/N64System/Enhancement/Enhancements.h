@@ -13,7 +13,7 @@ class CEnhancements
 {
     enum
     {
-        MaxGSEntries = 100,
+        MaxGSEntries = 1024,
     };
 
 public:

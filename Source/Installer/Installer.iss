@@ -1,15 +1,15 @@
 #define BaseDir ExtractFilePath(ExtractFilePath(ExtractFilePath(SourcePath)))
-#define AppVersion GetFileVersion(BaseDir + "\Bin\" + Configuration + "\Project64.exe")
+#define AppVersion GetFileVersion(BaseDir + "\Bin\" + Configuration + "\Project64-MPN.exe")
 
 [Setup]
 AppId={{BEB5FB69-4080-466F-96C4-F15DF271718B}
 AppName=Project64
 AppVersion={#AppVersion}
-DefaultDirName={pf32}\Project64 3.0
+DefaultDirName={pf32}\Project64 MPN
 VersionInfoVersion={#AppVersion}
-OutputDir={#BaseDir}\Bin\{#Configuration}
-OutputBaseFilename=Setup Project64 3.0
-VersionInfoDescription=Installation Setup of Project64 3.0
+OutputDir={#BaseDir}\Package\
+OutputBaseFilename=Setup Project64 MPN
+VersionInfoDescription=Installation Setup of Project64 MPN
 Compression=lzma2/ultra64
 WizardImageFile=Installer-Sidebar.bmp
 WizardSmallImageFile=Pj64LogoSmallImage.bmp
@@ -20,10 +20,10 @@ UninstallDisplayIcon={uninstallexe}
 SetupIconFile={#BaseDir}\Source\Project64\UserInterface\Icons\pj64.ico
 
 [Run]
-Filename: "{app}\Project64.exe"; Description: "{cm:LaunchProgram,{#StringChange('Project64', '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\Project64-MPN.exe"; Description: "{cm:LaunchProgram,{#StringChange('Project64', '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Files]
-Source: "{#BaseDir}\Bin\{#Configuration}\Project64.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseDir}\Bin\{#Configuration}\Project64-MPN.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseDir}\Config\Video.rdb"; DestDir: "{app}\Config"
 Source: "{#BaseDir}\Config\Audio.rdb"; DestDir: "{app}\Config"
 Source: "{#BaseDir}\Config\Cheats\*.cht"; DestDir: "{app}\Config\Cheats"
@@ -38,6 +38,7 @@ Source: "{#BaseDir}\Plugin\GFX\Project64-Video.dll"; DestDir: "{app}\Plugin\GFX"
 Source: "{#BaseDir}\Plugin\GFX\GLideN64\*"; DestDir: "{app}\Plugin\GFX\GLideN64"; Flags: recursesubdirs skipifsourcedoesntexist
 Source: "{#BaseDir}\Plugin\Input\PJ64_NRage.dll"; DestDir: "{app}\Plugin\Input"
 Source: "{#BaseDir}\Plugin\Input\Project64-Input.dll"; DestDir: "{app}\Plugin\Input"
+Source: "{#BaseDir}\Plugin\Input\netplay_input_plugin.dll"; DestDir: "{app}\Plugin\Input"
 Source: "{#BaseDir}\Plugin\RSP\RSP 1.7.dll"; DestDir: "{app}\Plugin\RSP"
 
 [Dirs]
@@ -50,10 +51,10 @@ Name: "{app}\Textures"; Permissions: everyone-full
 Name: "{app}\Plugin\GFX\GLideN64"; Permissions: everyone-full
 
 [Icons]
-Name: "{commondesktop}\Project64"; Filename: "{app}\Project64.exe"; Tasks: desktopicon
-Name: "{commonprograms}\Project64 2.3\Project64"; Filename: "{app}\Project64.exe"
-Name: "{commonprograms}\Project64 2.3\Uninstall Project64 2.3"; Filename: "{uninstallexe}"; Parameters: "/LOG"; Flags: createonlyiffileexists
-Name: "{commonprograms}\Project64 2.3\Support"; Filename: "http://forum.pj64-emu.com"
+Name: "{commondesktop}\Project64"; Filename: "{app}\Project64-MPN.exe"; Tasks: desktopicon
+Name: "{commonprograms}\Project64 MPN\Project64"; Filename: "{app}\Project64-MPN.exe"
+Name: "{commonprograms}\Project64 MPN\Uninstall Project64 MPN"; Filename: "{uninstallexe}"; Parameters: "/LOG"; Flags: createonlyiffileexists
+Name: "{commonprograms}\Project64 MPN\Support"; Filename: "http://forum.pj64-emu.com"
 
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon"
