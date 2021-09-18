@@ -12,7 +12,7 @@ if "%zip%" == "" (
 	)
 )
 
-set ZipFileName=project64
+set ZipFileName=Project64-MPN
 if not "%1" == "" set ZipFileName=%1
 if "%~2" == "x64" set VSPlatform=64
 
@@ -32,7 +32,6 @@ md "%base_dir%\Bin\Package"
 md "%base_dir%\Bin\Package\Config"
 md "%base_dir%\Bin\Package\Config\Cheats"
 md "%base_dir%\Bin\Package\Config\Enhancements"
-md "%base_dir%\Bin\Package\Lang"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
@@ -47,7 +46,7 @@ md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
 copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\translations\*.Lang" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
 )
 
-copy "%base_dir%\Bin\Release%VSPlatform%\Project64.exe" "%base_dir%\Bin\Package"
+copy "%base_dir%\Bin\Release%VSPlatform%\Project64-MPN.exe" "%base_dir%\Bin\Package"
 copy "%base_dir%\Config\Video.rdb" "%base_dir%\Bin\Package\Config"
 copy "%base_dir%\Config\Audio.rdb" "%base_dir%\Bin\Package\Config"
 copy "%base_dir%\Config\Cheats\*.cht" "%base_dir%\Bin\Package\Config\Cheats"
@@ -60,7 +59,7 @@ copy "%base_dir%\Plugin%VSPlatform%\Audio\Project64-Audio.dll" "%base_dir%\Bin\P
 copy "%base_dir%\Plugin%VSPlatform%\GFX\Jabo_Direct3D8.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
 copy "%base_dir%\Plugin%VSPlatform%\GFX\Project64-Video.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
 copy "%base_dir%\Plugin%VSPlatform%\Input\PJ64_NRage.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
-copy "%base_dir%\Plugin%VSPlatform%\Input\Project64-Input.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
+copy "%base_dir%\Plugin%VSPlatform%\Input\netplay_input_plugin.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
 copy "%base_dir%\Plugin%VSPlatform%\RSP\RSP 1.7.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
 
 cd %base_dir%\Bin\Package
@@ -68,6 +67,8 @@ cd %base_dir%\Bin\Package
 cd /d %current_dir%
 
 echo Package %ZipFileName% created
+
+copy "%base_dir%\Package\Project64-MPN.zip" "Bin\Release\"
 
 goto :end
 

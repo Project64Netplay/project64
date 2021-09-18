@@ -31,13 +31,21 @@ private:
     CEditConOutput m_ConOutputEdit;
     CListViewCtrl m_ScriptList;
     CStatusBarCtrl m_StatusBar;
-    stdstr m_SelectedScriptName;
+
+    HFONT m_MonoFont, m_MonoBoldFont;
+
     stdstr m_InstallDir;
     stdstr m_ScriptsDir;
 
+    stdstr m_SelectedScriptName;
+    std::vector<wchar_t*> m_InputHistory;
+    size_t m_InputHistoryIndex;
+
+    stdstr m_ConOutputBuffer;
+
     HANDLE m_hQuitScriptDirWatchEvent;
     HANDLE m_hScriptDirWatchThread;
-    static DWORD WINAPI ScriptDirWatchProc(void *ctx);
+    static DWORD WINAPI ScriptDirWatchProc(void* ctx);
 
     void RunSelected();
     void StopSelected();
@@ -51,7 +59,7 @@ private:
 public:
     enum { IDD = IDD_Debugger_Scripts };
 
-    CDebugScripts(CDebuggerUI * debugger);
+    CDebugScripts(CDebuggerUI* debugger);
     virtual ~CDebugScripts(void);
 
     void ConsolePrint(const char* text);
@@ -88,11 +96,11 @@ public:
         MSG_WM_TIMER(OnTimer)
         MSG_WM_DESTROY(OnDestroy)
         MSG_WM_EXITSIZEMOVE(OnExitSizeMove);
-        MESSAGE_HANDLER(WM_CONSOLE_PRINT, OnConsolePrint)
+    MESSAGE_HANDLER(WM_CONSOLE_PRINT, OnConsolePrint)
         MESSAGE_HANDLER(WM_CONSOLE_CLEAR, OnConsoleClear)
         MESSAGE_HANDLER(WM_REFRESH_LIST, OnRefreshList)
         CHAIN_MSG_MAP(CDialogResize<CDebugScripts>)
-    END_MSG_MAP()
+        END_MSG_MAP()
 
     BEGIN_DLGRESIZE_MAP(CDebugScripts)
         DLGRESIZE_CONTROL(IDC_CONSOLE_EDIT, DLSZ_SIZE_X | DLSZ_SIZE_Y)

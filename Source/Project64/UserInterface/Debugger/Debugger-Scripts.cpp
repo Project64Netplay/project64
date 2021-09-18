@@ -161,7 +161,7 @@ DWORD WINAPI CDebugScripts::ScriptDirWatchProc(void* ctx)
         }
     }
 
-    done:
+done:
     FindCloseChangeNotification(hEvents[0]);
     return 0;
 }
@@ -304,7 +304,7 @@ void CDebugScripts::RefreshStatus()
         }
         m_ConInputEdit.EnableWindow(FALSE);
     }
-    
+
     m_StatusBar.SetText(0, statusText.ToUTF16().c_str());
 }
 
@@ -331,7 +331,7 @@ LRESULT CDebugScripts::OnScriptListRClicked(NMHDR* pNMHDR)
     {
         EnableMenuItem(hPopupMenu, ID_POPUP_STOP, MF_DISABLED | MF_GRAYED);
     }
-    
+
     POINT mouse;
     GetCursorPos(&mouse);
     TrackPopupMenu(hPopupMenu, TPM_LEFTALIGN, mouse.x, mouse.y, 0, m_hWnd, nullptr);
@@ -384,7 +384,7 @@ LRESULT CDebugScripts::OnScriptListCustomDraw(NMHDR* pNMHDR)
 LRESULT CDebugScripts::OnScriptListItemChanged(NMHDR* pNMHDR)
 {
     NMLISTVIEW* lpStateChange = reinterpret_cast<NMLISTVIEW*>(pNMHDR);
-    if ((lpStateChange->uNewState ^  lpStateChange->uOldState) & LVIS_SELECTED)
+    if ((lpStateChange->uNewState ^ lpStateChange->uOldState) & LVIS_SELECTED)
     {
         if (lpStateChange->iItem == -1)
         {
@@ -407,7 +407,7 @@ LRESULT CDebugScripts::OnScriptListItemChanged(NMHDR* pNMHDR)
 
 LRESULT CDebugScripts::OnConsolePrint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-    char *text = (char*)wParam;
+    char* text = (char*)wParam;
     m_ConOutputBuffer += text;
     free(text);
     return FALSE;
@@ -446,8 +446,8 @@ LRESULT CDebugScripts::OnRefreshList(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*
 
         stdstr scriptFileName = searchPath.GetNameExtension();
         JSInstanceStatus status = m_Debugger->ScriptSystem()->GetStatus(scriptFileName.c_str());
-        const wchar_t *statusIcon = L"";
-    
+        const wchar_t* statusIcon = L"";
+
         switch (status)
         {
         case JS_STATUS_STARTING:
@@ -460,7 +460,7 @@ LRESULT CDebugScripts::OnRefreshList(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*
             statusIcon = L"-";
             break;
         }
-    
+
         m_ScriptList.AddItem(nItem, 0, statusIcon);
         m_ScriptList.SetItemText(nItem, 1, scriptFileName.ToUTF16().c_str());
         nItem++;
@@ -610,7 +610,7 @@ void CDebugScripts::OnTimer(UINT_PTR nIDEvent)
         scroll.cbSize = sizeof(SCROLLINFO);
         scroll.fMask = SIF_ALL;
         m_ConOutputEdit.GetScrollInfo(SB_VERT, &scroll);
-        
+
         m_ConOutputEdit.SetRedraw(FALSE);
         m_ConOutputEdit.AppendText(m_ConOutputBuffer.ToUTF16().c_str());
         m_ConOutputEdit.SetRedraw(TRUE);

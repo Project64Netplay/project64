@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7E534C8E-1ACE-4A88-8807-39A11ED4DA18}</ProjectGuid>
     <RootNamespace>Project64</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -33,6 +34,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <PropertyGroup>
     <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>Project64-MPN</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
@@ -257,12 +261,6 @@
     <ProjectReference Include="..\Common\Common.vcxproj">
       <Project>{b4a4b994-9111-42b1-93c2-6f1ca8bc4421}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\nragev20\NRage_Input_V2.vcxproj">
-      <Project>{fd617e80-9e40-4138-85da-b94633972e6a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Project64-audio\Project64-audio.vcxproj">
-      <Project>{d233025a-231f-4a43-92b6-e87193c60acc}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Project64-core\Project64-core.vcxproj">
       <Project>{00c7b43a-ded7-4df0-b072-9a5783ef866d}</Project>
