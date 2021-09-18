@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Project64-MPN-win32
-        path: D:\a\project64-mpn-3.0\project64-mpn-3.0\Packages\
+        path: D:\a\project64-mpn-3.0\project64-mpn-3.0\Package\
