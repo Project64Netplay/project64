@@ -91,7 +91,6 @@
     <ClCompile Include="UserInterface\Debugger\ScriptInstance.cpp" />
     <ClCompile Include="UserInterface\Debugger\ScriptSystem.cpp" />
     <ClCompile Include="UserInterface\Debugger\Symbols.cpp" />
-    <ClCompile Include="UserInterface\DiscordRPC.cpp" />
     <ClCompile Include="UserInterface\EnhancementUI.cpp" />
     <ClCompile Include="UserInterface\MainWindow.cpp" />
     <ClCompile Include="UserInterface\LoggingUI.cpp" />

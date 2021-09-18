@@ -354,6 +354,9 @@
     <ClCompile Include="N64System\N64Rom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="3rdParty\mario_party_netplay.h">
+      <Filter>Header Files\3rd Party</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

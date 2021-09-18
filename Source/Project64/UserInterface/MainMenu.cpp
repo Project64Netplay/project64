@@ -201,11 +201,6 @@ void CMainMenu::OnEndEmulation(void)
         g_BaseSystem->CloseCpu();
     }
     m_Gui->SaveWindowLoc();
-
-	if (UISettingsLoadBool(Setting_EnableDiscordRPC))
-	{
-		CDiscord::Update(false);
-	}
 }
 
 void CMainMenu::OnScreenShot(void)
@@ -593,6 +588,16 @@ bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuI
     case ID_HELP_DISCORD: ShellExecute(nullptr, L"open", L"https://discord.gg/Cg3zquF", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_HELP_WEBSITE: ShellExecute(nullptr, L"open", L"http://www.pj64-emu.com", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_HELP_ABOUT: CAboutDlg(m_Gui->Support()).DoModal(); break;
+    case ID_NETPLAY_REPLACESAVES: ShellExecute(nullptr, L"open", L"Replace.bat", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
+    case ID_NETPLAY_MPN: ShellExecute(nullptr, L"open", L"https://discord.gg/marioparty", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
+    case ID_NETPLAY_UPDATE_PLUGINS: ShellExecute(nullptr, L"open", L"UpdatePlugin.bat", nullptr, nullptr, SW_SHOWMINIMIZED); break;
+    case ID_NETPLAY_UPDATE_SAVES: ShellExecute(nullptr, L"open", L"UpdateSaves.bat", nullptr, nullptr, SW_SHOWMINIMIZED); break;
+    case ID_NETPLAY_UPDATE_EMULATOR:
+        if (!g_Settings->LoadBool(GameRunning_CPU_Running))
+            ShellExecute(nullptr, L"open", L"UpdateEmulator.bat", nullptr, nullptr, SW_SHOWMINIMIZED);
+        else
+            g_Notify->DisplayMessage(5, "Emulator can only be updated while a game is not running.");
+    break;
     default:
         if (MenuID >= ID_RECENT_ROM_START && MenuID < ID_RECENT_ROM_END)
         {
@@ -1291,9 +1296,24 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
     HelpMenu.push_back(MENU_ITEM(SPLITER));
     HelpMenu.push_back(MENU_ITEM(ID_HELP_ABOUT, MENU_ABOUT_PJ64));
 
+    // Netplay Menu
+    MenuItemList NetplayMenu;
+
+    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_MPN, MENU_MPN));
+    NetplayMenu.push_back(MENU_ITEM(SPLITER));
+    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_REPLACESAVES, MENU_REPLACESAVES));
+    NetplayMenu.push_back(MENU_ITEM(ID_SYSTEM_CHEAT, MENU_CHEAT, m_ShortCuts.ShortCutString(ID_SYSTEM_CHEAT, RunningState)));
+    NetplayMenu.push_back(MENU_ITEM(SPLITER));
+    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_PLUGINS, MENU_UPDATE_PLUGINS));
+    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_SAVES, MENU_UPDATE_SAVES));
+    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_EMULATOR, MENU_UPDATE_EMULATOR));
+
     // Main title bar Menu
     MenuItemList MainTitleMenu;
     Item.Reset(SUB_MENU, MENU_FILE, EMPTY_STDSTR, &FileMenu);
+    if (RomLoading) { Item.SetItemEnabled(false); }
+    MainTitleMenu.push_back(Item);
+    Item.Reset(SUB_MENU, MENU_NETPLAY, EMPTY_STDSTR, &NetplayMenu);
     if (RomLoading) { Item.SetItemEnabled(false); }
     MainTitleMenu.push_back(Item);
     if (CPURunning)

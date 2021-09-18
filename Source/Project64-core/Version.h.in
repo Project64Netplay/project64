@@ -5,7 +5,7 @@
 #define VERSION_MINOR               0
 #define VERSION_REVISION            1
 #define VERSION_BUILD               9999
-#define VERSION_PREFIX              ""
+#define VERSION_PREFIX              "MPN"
 
 #define GIT_REVISION                ""
 #define GIT_REVISION_SHORT          ""
@@ -14,11 +14,8 @@
 
 #define VER_FILE_DESCRIPTION_STR    "Project64"
 #define VER_FILE_VERSION            VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION, VERSION_BUILD
-#define VER_FILE_VERSION_STR        VERSION_PREFIX STRINGIZE(VERSION_MAJOR)        \
-                                    "." STRINGIZE(VERSION_MINOR)    \
-                                    "." STRINGIZE(VERSION_REVISION) \
-                                    "." STRINGIZE(VERSION_BUILD)    \
-                                    "-" GIT_VERSION
+#define VER_FILE_VERSION_STR        VERSION_PREFIX        \
+                                    " - " GIT_VERSION
 
 #define VER_PRODUCTNAME_STR         "Project64"
 #define VER_PRODUCT_VERSION         VER_FILE_VERSION

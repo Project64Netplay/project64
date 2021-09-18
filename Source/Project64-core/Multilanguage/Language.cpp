@@ -84,6 +84,14 @@ void CLanguage::LoadDefaultStrings(void)
     DEF_STR(MENU_SUPPORT_PROJECT64, "&Support Project64");
     DEF_STR(MENU_DISCORD, "&Discord");
 
+    //Netplay Menu
+    DEF_STR(MENU_NETPLAY, "&Netplay");
+    DEF_STR(MENU_MPN, "Mario Party Netplay &Discord");
+    DEF_STR(MENU_REPLACESAVES, "&Replace Save Files");
+    DEF_STR(MENU_UPDATE_EMULATOR, "Update &Emulator");
+    DEF_STR(MENU_UPDATE_PLUGINS, "Update &Plugins...");
+    DEF_STR(MENU_UPDATE_SAVES, "Update &Save Files...");
+
     // Current save slot menu
     DEF_STR(MENU_SLOT_DEFAULT, "Default");
     DEF_STR(MENU_SLOT_1, "Slot 1");

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <3rdParty\discord-rpc\include\discord_rpc.h>
-#include "DiscordRPC.h"
 
 #define UNIX_TIME_START    0x019DB1DED53E8000
 #define TICKS_PER_SECOND   10000000

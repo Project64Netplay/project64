@@ -40,6 +40,7 @@
     <ClCompile Include="3rdParty\7zip.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="3rdParty\mario_party_netplay.h" />
     <ClCompile Include="AppInit.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MemoryExceptionFilter.cpp" />
@@ -95,7 +96,7 @@
     <ClCompile Include="Plugins\AudioPlugin.cpp" />
     <ClCompile Include="Plugins\ControllerPlugin.cpp" />
     <ClCompile Include="Plugins\GFXPlugin.cpp" />
-	<ClCompile Include="Plugins\LowLevelPlugin.cpp" />
+    <ClCompile Include="Plugins\LowLevelPlugin.cpp" />
     <ClCompile Include="Plugins\Plugin.cpp" />
     <ClCompile Include="Plugins\PluginBase.cpp" />
     <ClCompile Include="Plugins\RSPPlugin.cpp" />
@@ -201,7 +202,7 @@
     <ClInclude Include="Plugins\AudioPlugin.h" />
     <ClInclude Include="Plugins\ControllerPlugin.h" />
     <ClInclude Include="Plugins\GFXPlugin.h" />
-	<ClInclude Include="Plugins\LowLevelPlugin.h" />
+    <ClInclude Include="Plugins\LowLevelPlugin.h" />
     <ClInclude Include="Plugins\Plugin.h" />
     <ClInclude Include="Plugins\PluginBase.h" />
     <ClInclude Include="Plugins\RSPPlugin.h" />
