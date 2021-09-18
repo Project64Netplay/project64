@@ -96,6 +96,14 @@ enum LanguageStringID
     MENU_SUPPORT_PROJECT64 = 185,
     MENU_DISCORD = 186,
 
+    //Netplay Menu
+    MENU_NETPLAY = 4000,
+    MENU_REPLACESAVES = 4001,
+    MENU_MPN = 4002,
+    MENU_UPDATE_PLUGINS = 4003,
+    MENU_UPDATE_SAVES = 4004,
+    MENU_UPDATE_EMULATOR = 4005,
+
     // Current save slot menu
     MENU_SLOT_DEFAULT = 190,
     MENU_SLOT_1 = 191,
