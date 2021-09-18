@@ -40,11 +40,17 @@ Source: "{#BaseDir}\Plugin\Input\PJ64_NRage.dll"; DestDir: "{app}\Plugin\Input"
 Source: "{#BaseDir}\Plugin\Input\Project64-Input.dll"; DestDir: "{app}\Plugin\Input"
 Source: "{#BaseDir}\Plugin\Input\netplay_input_plugin.dll"; DestDir: "{app}\Plugin\Input"
 Source: "{#BaseDir}\Plugin\RSP\RSP 1.7.dll"; DestDir: "{app}\Plugin\RSP"
+Source: "{#BaseDir}\Replace.bat"; DestDir: "{app}\Replace.bat"
+Source: "{#BaseDir}\Save\*.eep"; DestDir: "{app}\Save"
+Source: "{#BaseDir}\Save\*.sra"; DestDir: "{app}\Save"
+Source: "{#BaseDir}\Save\Backup\*.eep"; DestDir: "{app}\Save\Backup"
+Source: "{#BaseDir}\Save\Backup\*.sra"; DestDir: "{app}\Save\Backup"
 
 [Dirs]
 Name: "{app}\Config"; Permissions: everyone-full
 Name: "{app}\Config\Cheats-User"; Permissions: everyone-full
 Name: "{app}\Logs"; Permissions: everyone-full
+Name: "{app}\Save"; Permissions: everyone-full
 Name: "{app}\Save"; Permissions: everyone-full
 Name: "{app}\Screenshots"; Permissions: everyone-full
 Name: "{app}\Textures"; Permissions: everyone-full
