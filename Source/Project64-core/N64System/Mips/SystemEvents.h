@@ -64,6 +64,7 @@ protected:
 public:
     void ExecuteEvents();
     void QueueEvent(SystemEvent action);
+    void DequeueEvent(SystemEvent action);
 
     const int32_t & DoSomething() const
     {

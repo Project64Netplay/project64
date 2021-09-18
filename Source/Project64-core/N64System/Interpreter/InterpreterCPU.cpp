@@ -312,6 +312,11 @@ void CInterpreterCPU::ExecuteCPU()
                 g_Debugger->CPUStep();
             }
 
+            if (CLowLevel_Plugin::IsAddressMasked(PROGRAM_COUNTER))
+            {
+                g_Plugins->LowLevel()->OnExecute(PROGRAM_COUNTER);
+            }
+
             /* if (PROGRAM_COUNTER > 0x80000300 && PROGRAM_COUNTER < 0x80380000)
             {
             WriteTraceF((TraceType)(TraceError | TraceNoHeader),"%X: %s",*_PROGRAM_COUNTER,R4300iOpcodeName(Opcode.Hex,*_PROGRAM_COUNTER));

@@ -2,6 +2,7 @@
 #include <Project64-core/AppInit.h>
 #include "UserInterface/WelcomeScreen.h"
 #include "Settings/UISettings.h"
+#include "Plugins/PluginList.h"
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpszArgs*/, int /*nWinMode*/)
 {
@@ -85,6 +86,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
                 MainWindow.Show(true);
             }
         }
+
+        CPluginList(true);
 
         WriteTrace(TraceUserInterface, TraceDebug, "Entering message loop");
         MainWindow.ProcessAllMessages();

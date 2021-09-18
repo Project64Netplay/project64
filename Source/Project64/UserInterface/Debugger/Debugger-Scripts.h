@@ -31,17 +31,9 @@ private:
     CEditConOutput m_ConOutputEdit;
     CListViewCtrl m_ScriptList;
     CStatusBarCtrl m_StatusBar;
-
-    HFONT m_MonoFont, m_MonoBoldFont;
-
+    stdstr m_SelectedScriptName;
     stdstr m_InstallDir;
     stdstr m_ScriptsDir;
-
-    stdstr m_SelectedScriptName;
-    std::vector<wchar_t*> m_InputHistory;
-    size_t m_InputHistoryIndex;
-
-    stdstr m_ConOutputBuffer;
 
     HANDLE m_hQuitScriptDirWatchEvent;
     HANDLE m_hScriptDirWatchThread;

@@ -95,6 +95,7 @@ private:
     friend class CAudioPlugin;
     friend class CRSP_Plugin;
     friend class CControl_Plugin;
+    friend class CLowLevel_Plugin;
 
     // Recompiler has access to manipulate and call functions
     friend class CSystemTimer;
