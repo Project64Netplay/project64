@@ -61,6 +61,12 @@ copy "%base_dir%\Plugin%VSPlatform%\GFX\Project64-Video.dll" "%base_dir%\Bin\Pac
 copy "%base_dir%\Plugin%VSPlatform%\Input\PJ64_NRage.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
 copy "%base_dir%\Plugin%VSPlatform%\Input\netplay_input_plugin.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
 copy "%base_dir%\Plugin%VSPlatform%\RSP\RSP 1.7.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
+copy "%base_dir%\Replace.bat" "%base_dir%\Bin\Package\"
+
+copy "%base_dir%\Save\*.eep" "%base_dir%\Bin\Package\Save"
+copy "%base_dir%\Save\*.sra" "%base_dir%\Bin\Package\Save"
+copy "%base_dir%\Save\Backup\*.eep" "%base_dir%\Bin\Package\Save\Backup"
+copy "%base_dir%\Save\Backup\*.sra" "%base_dir%\Bin\Package\Save\Backup"
 
 cd %base_dir%\Bin\Package
 "%zip%" a -tzip -r "%base_dir%\Package\%ZipFileName%" *
