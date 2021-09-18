@@ -316,6 +316,12 @@ bool CMipsMemoryVM::LB_VAddr(uint32_t VAddr, uint8_t& Value)
     }
 
     Value = *(uint8_t*)(m_TLB_ReadMap[VAddr >> 12] + (VAddr ^ 3));
+
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnRead8(VAddr, &Value);
+    }
+
     return true;
 }
 
@@ -327,6 +333,12 @@ bool CMipsMemoryVM::LH_VAddr(uint32_t VAddr, uint16_t& Value)
     }
 
     Value = *(uint16_t*)(m_TLB_ReadMap[VAddr >> 12] + (VAddr ^ 2));
+
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnRead16(VAddr, &Value);
+    }
+
     return true;
 }
 
@@ -350,6 +362,11 @@ bool CMipsMemoryVM::LW_VAddr(uint32_t VAddr, uint32_t& Value)
 
     Value = *(uint32_t*)(BaseAddress + VAddr);
 
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnRead32(VAddr, &Value);
+    }
+
     //	if (LookUpMode == FuncFind_ChangeMemory)
     //	{
     //		g_Notify->BreakPoint(__FILE__, __LINE__);
@@ -370,6 +387,12 @@ bool CMipsMemoryVM::LD_VAddr(uint32_t VAddr, uint64_t& Value)
 
     *((uint32_t*)(&Value) + 1) = *(uint32_t*)(m_TLB_ReadMap[VAddr >> 12] + VAddr);
     *((uint32_t*)(&Value) + 0) = *(uint32_t*)(m_TLB_ReadMap[VAddr >> 12] + VAddr + 4);
+
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnRead64(VAddr, &Value);
+    }
+
     return true;
 }
 
@@ -449,6 +472,11 @@ bool CMipsMemoryVM::SB_VAddr(uint32_t VAddr, uint8_t Value)
         return false;
     }
 
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnWrite8(VAddr, &Value);
+    }
+
     *(uint8_t*)(m_TLB_WriteMap[VAddr >> 12] + (VAddr ^ 3)) = Value;
     return true;
 }
@@ -458,6 +486,11 @@ bool CMipsMemoryVM::SH_VAddr(uint32_t VAddr, uint16_t Value)
     if (m_TLB_WriteMap[VAddr >> 12] == 0)
     {
         return false;
+    }
+
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnWrite16(VAddr, &Value);
     }
 
     *(uint16_t*)(m_TLB_WriteMap[VAddr >> 12] + (VAddr ^ 2)) = Value;
@@ -481,6 +514,11 @@ bool CMipsMemoryVM::SW_VAddr(uint32_t VAddr, uint32_t Value)
         return false;
     }
 
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnWrite32(VAddr, &Value);
+    }
+
     *(uint32_t*)(m_TLB_WriteMap[VAddr >> 12] + VAddr) = Value;
     return true;
 }
@@ -490,6 +528,11 @@ bool CMipsMemoryVM::SD_VAddr(uint32_t VAddr, uint64_t Value)
     if (m_TLB_WriteMap[VAddr >> 12] == 0)
     {
         return false;
+    }
+
+    if (CLowLevel_Plugin::IsAddressMasked(VAddr))
+    {
+        g_Plugins->LowLevel()->OnWrite64(VAddr, &Value);
     }
 
     *(uint32_t*)(m_TLB_WriteMap[VAddr >> 12] + VAddr + 0) = *((uint32_t*)(&Value) + 1);

@@ -58,7 +58,27 @@ bool CScriptInstance::Run(const char* path)
         return false;
     }
 
+<<<<<<< HEAD
     m_Ctx = duk_create_heap(nullptr, nullptr, nullptr, this, nullptr);
+=======
+    if (m_TempPath)
+    {
+        stdstr scriptsDir = (std::string)CPath(CPath::MODULE_DIRECTORY) + "Scripts\\";
+        stdstr fullPath = scriptsDir + m_TempPath;
+        duk_int_t scriptresult = duk_peval_file(ctx, fullPath.c_str());
+        m_TempPath = nullptr;
+
+        if (scriptresult != 0)
+        {
+            const char* errorText = duk_safe_to_string(ctx, -1);
+            //MessageBox(nullptr, duk_safe_to_string(ctx, -1), "Script error", MB_OK | MB_ICONWARNING);
+            m_Debugger->Debug_LogScriptsWindow(errorText);
+            m_Debugger->Debug_LogScriptsWindow("\r\n");
+            SetState(STATE_STOPPED);
+            return;
+        }
+    }
+>>>>>>> afb7fef64c57cf608b289d35640f4f5e47bae653
 
     if(m_Ctx == nullptr)
     {

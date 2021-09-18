@@ -1279,12 +1279,15 @@ void rdp_texrect()
     float off_size_x;
     float off_size_y;
 
+    gfxTextureFilterMode_t filter = (rdp.filter_mode == 0) ? GFX_TEXTUREFILTER_POINT_SAMPLED : GFX_TEXTUREFILTER_BILINEAR;
+    bool point_sampled = (filter == GFX_TEXTUREFILTER_POINT_SAMPLED || g_settings->filtering() == CSettings::Filter_ForcePointSampled);
+
     if (((rdp.cmd0 >> 24) & 0xFF) == 0xE5) //texrectflip
     {
-        if (rdp.cur_cache[0]->is_hires_tex)
+        if (rdp.cur_cache[0]->is_hires_tex || point_sampled)
         {
-            off_size_x = (float)((lr_y - ul_y) * dsdx);
-            off_size_y = (float)((lr_x - ul_x) * dtdy);
+            off_size_x = (lr_y - ul_y) * dsdx;
+            off_size_y = (lr_x - ul_x) * dtdy;
         }
         else
         {
@@ -1294,10 +1297,10 @@ void rdp_texrect()
     }
     else
     {
-        if (rdp.cur_cache[0]->is_hires_tex)
+        if (rdp.cur_cache[0]->is_hires_tex || point_sampled)
         {
-            off_size_x = (float)((lr_x - ul_x) * dsdx);
-            off_size_y = (float)((lr_y - ul_y) * dtdy);
+            off_size_x = (lr_x - ul_x) * dsdx;
+            off_size_y = (lr_y - ul_y) * dtdy;
         }
         else
         {
@@ -1393,10 +1396,20 @@ void rdp_texrect()
                 texUV[z].lr_u = texUV[z].ul_u + off_size_x * sx;
                 texUV[z].lr_v = texUV[z].ul_v + off_size_y * sy;
 
-                texUV[z].ul_u = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_x * texUV[z].ul_u;
-                texUV[z].lr_u = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_x * texUV[z].lr_u;
-                texUV[z].ul_v = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_y * texUV[z].ul_v;
-                texUV[z].lr_v = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_y * texUV[z].lr_v;
+                if (point_sampled)
+                {
+                    texUV[z].ul_u *= rdp.cur_cache[z]->c_scl_x;
+                    texUV[z].lr_u *= rdp.cur_cache[z]->c_scl_x;
+                    texUV[z].ul_v *= rdp.cur_cache[z]->c_scl_y;
+                    texUV[z].lr_v *= rdp.cur_cache[z]->c_scl_y;
+                }
+                else
+                {
+                    texUV[z].ul_u = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_x * texUV[z].ul_u;
+                    texUV[z].lr_u = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_x * texUV[z].lr_u;
+                    texUV[z].ul_v = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_y * texUV[z].ul_v;
+                    texUV[z].lr_v = rdp.cur_cache[z]->c_off + rdp.cur_cache[z]->c_scl_y * texUV[z].lr_v;
+                }
             }
         }
         else

@@ -808,7 +808,7 @@ void TexCache()
 
             if (g_settings->filtering() == CSettings::Filter_Automatic)
             {
-                gfxTextureFilterMode_t filter = (rdp.filter_mode != 2) ? GFX_TEXTUREFILTER_POINT_SAMPLED : GFX_TEXTUREFILTER_BILINEAR;
+                gfxTextureFilterMode_t filter = (rdp.filter_mode == 0) ? GFX_TEXTUREFILTER_POINT_SAMPLED : GFX_TEXTUREFILTER_BILINEAR;
                 gfxTexFilterMode(tmu, filter, filter);
             }
             else

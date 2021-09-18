@@ -13,6 +13,7 @@ CPlugins::CPlugins(SettingID PluginDirSetting, bool SyncPlugins) :
     m_Audio(nullptr),
     m_RSP(nullptr),
     m_Control(nullptr),
+    m_LowLevel(new CLowLevel_Plugin(m_PluginDir)),
     m_initilized(false),
     m_SyncPlugins(SyncPlugins)
 {
@@ -48,6 +49,7 @@ CPlugins::~CPlugins(void)
     DestroyAudioPlugin();
     DestroyRspPlugin();
     DestroyControlPlugin();
+    DestroyLowLevelPlugin();
 }
 
 void CPlugins::PluginChanged(CPlugins * _this)
@@ -241,6 +243,13 @@ void CPlugins::DestroyControlPlugin(void)
     //		g_Settings->UnknownSetting_CTRL = nullptr;
 }
 
+void CPlugins::DestroyLowLevelPlugin(void)
+{
+    if (m_LowLevel == NULL) return;
+    delete m_LowLevel;
+    m_LowLevel = NULL;
+}
+
 void CPlugins::SetRenderWindows(RenderWindow * MainWindow, RenderWindow * SyncWindow)
 {
     WriteTrace(TracePlugins, TraceDebug, "MainWindow = %p SyncWindow = %p", MainWindow, SyncWindow);
@@ -256,6 +265,7 @@ void CPlugins::RomOpened(void)
     m_RSP->RomOpened(m_MainWindow);
     m_Audio->RomOpened(m_MainWindow);
     m_Control->RomOpened(m_MainWindow);
+    m_LowLevel->RomOpened(m_MainWindow);
 
     WriteTrace(TracePlugins, TraceDebug, "Done");
 }
@@ -268,6 +278,7 @@ void CPlugins::RomClosed(void)
     m_RSP->RomClose(m_MainWindow);
     m_Audio->RomClose(m_MainWindow);
     m_Control->RomClose(m_MainWindow);
+    m_LowLevel->RomClose(m_MainWindow);
 
     WriteTrace(TracePlugins, TraceDebug, "Done");
 }
@@ -280,6 +291,7 @@ bool CPlugins::Initiate(CN64System * System)
     if (m_Audio == nullptr) { return false; }
     if (m_RSP == nullptr) { return false; }
     if (m_Control == nullptr) { return false; }
+    if (m_LowLevel == nullptr) { return false; }
 
     WriteTrace(TraceGFXPlugin, TraceDebug, "GFX initiate starting");
     if (!m_Gfx->Initiate(System, m_MainWindow))   { return false; }

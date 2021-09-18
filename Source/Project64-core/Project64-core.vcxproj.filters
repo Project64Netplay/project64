@@ -195,6 +195,9 @@
     <ClCompile Include="Plugins\RSPPlugin.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
+    <ClCompile Include="Plugins\LowLevelPlugin.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
     <ClCompile Include="N64System\EmulationThread.cpp">
       <Filter>Source Files\N64 System</Filter>
     </ClCompile>
@@ -441,6 +444,9 @@
       <Filter>Header Files\Plugins</Filter>
     </ClInclude>
     <ClInclude Include="Plugins\RSPPlugin.h">
+      <Filter>Header Files\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="Plugins\LowLevelPlugin.h">
       <Filter>Header Files\Plugins</Filter>
     </ClInclude>
     <ClInclude Include="Settings\DebugSettings.h">

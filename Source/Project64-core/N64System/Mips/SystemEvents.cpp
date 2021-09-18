@@ -79,6 +79,22 @@ void CSystemEvents::QueueEvent(SystemEvent action)
     m_bDoSomething = true;
 }
 
+void CSystemEvents::DequeueEvent(SystemEvent action)
+{
+    CGuard Guard(m_CS);
+    for (EventList::const_iterator iter = m_Events.begin(); iter != m_Events.end(); iter++)
+    {
+        if (*iter == action)
+        {
+            m_Events.erase(iter);
+            if (m_Events.empty()) {
+                m_bDoSomething = false;
+            }
+            return;
+        }
+    }
+}
+
 void CSystemEvents::ExecuteEvents()
 {
     EventList Events;

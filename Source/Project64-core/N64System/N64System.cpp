@@ -268,6 +268,10 @@ void CN64System::ExternalEvent(SystemEvent action)
         }
         break;
     case SysEvent_ResumeCPU_Settings:
+        if (!g_Settings->LoadBool(GameRunning_CPU_Paused))
+        {
+            DequeueEvent(SysEvent_PauseCPU_Settings);
+        }
         if (g_Settings->LoadDword(GameRunning_CPU_PausedType) == PauseType_Settings)
         {
             m_hPauseEvent.Trigger();
@@ -2411,6 +2415,11 @@ void CN64System::RefreshScreen()
             g_Plugins->Control()->GetKeys(Control, &Keys);
             m_Buttons[Control] = Keys.Value;
         }
+    }
+
+    if (g_Plugins->LowLevel()->OnFrame)
+    {
+        g_Plugins->LowLevel()->OnFrame(m_Buttons);
     }
 
     if (bShowCPUPer()) { m_CPU_Usage.StartTimer(Timer_UpdateScreen); }
