@@ -29,10 +29,10 @@ jobs:
         vs-version: '16.6.2'
     # Run MSBuild
     - name: Build Solution
-      run: msbuild "D:\a\project64-mpn-3.0\project64-mpn-3.0\Project64MPN.sln" /verbosity:minimal /property:Configuration=Release  /property:Platform=Win32
+      run: msbuild "D:\a\Project64-Netplay\Project64-Netplay\Project64 Netplay.sln" /verbosity:minimal /property:Configuration=Release  /property:Platform=Win32
     # Upload Artifact
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Project64-MPN-win32
-        path: D:\a\project64-mpn-3.0\project64-mpn-3.0\Package\
+        name: PJ64Netplay-dev
+        path: D:\a\Project64-Netplay\Project64-Netplay\Package\

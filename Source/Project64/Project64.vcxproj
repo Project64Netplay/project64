@@ -36,7 +36,7 @@
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>Project64-MPN</TargetName>
+    <TargetName>Project64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
@@ -142,7 +142,6 @@
     <ClCompile Include="UserInterface\Settings\SettingsPage.cpp" />
     <ClCompile Include="UserInterface\SupportEnterCode.cpp" />
     <ClCompile Include="UserInterface\SupportWindow.cpp" />
-    <ClCompile Include="UserInterface\WelcomeScreen.cpp" />
     <ClCompile Include="UserInterface\WTLControls\EditNumber32.cpp" />
     <ClCompile Include="UserInterface\WTLControls\GetCWindowText.cpp" />
     <ClCompile Include="UserInterface\WTLControls\HexEditCtrl.cpp" />
@@ -225,7 +224,6 @@
     <ClInclude Include="UserInterface\Settings\SettingsPage.h" />
     <ClInclude Include="UserInterface\SupportEnterCode.h" />
     <ClInclude Include="UserInterface\SupportWindow.h" />
-    <ClInclude Include="UserInterface\WelcomeScreen.h" />
     <ClInclude Include="UserInterface\WTLControls\DisplayMode.h" />
     <ClInclude Include="UserInterface\WTLControls\EditConInput.h" />
     <ClInclude Include="UserInterface\WTLControls\EditNumber32.h" />
@@ -263,9 +261,6 @@
     </ProjectReference>
     <ProjectReference Include="..\Project64-core\Project64-core.vcxproj">
       <Project>{00c7b43a-ded7-4df0-b072-9a5783ef866d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Project64-video\Project64-video.vcxproj">
-      <Project>{a4d13408-a794-4199-8fc7-4a9a32505005}</Project>
     </ProjectReference>
     <ProjectReference Include="..\RSP\RSP.vcxproj">
       <Project>{a7ed562c-63f3-4b7e-b6b3-2cf7848752e1}</Project>

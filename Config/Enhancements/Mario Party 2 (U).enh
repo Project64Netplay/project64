@@ -1,20 +1,293 @@
 [9EA95858-AF72B618-C:45]
 Name=Mario Party 2 (U)
 
-$Widescreen
-Note=Boards in 4:3.
-8102045A 3FE3
-81053554 0801
-81053556 DFD4
-81053558 3C1B
-8105355A 3FAB
-81077F50 449B
-81077F52 6000
-81077F54 460C
-81077F56 0002
-81077F58 4606
-81077F5A 0002
-81077F5C 0801
-81077F5E 4D57
-81077F60 0000
-81077F62 0000
+$!!! - README
+On By Default=1
+Note=Make sure all players have the same codes active before starting a game. Trying to cheat by enabling codes that weren't agreed on will only cause a desync and a waste of time. "Recommended" codes do not affect the balance of the game and should be left on, so parties finish quickly and safely.
+
+$aQOL - Mario Party 2 Improvement Codes
+On By Default=1
+Author=gamemasterplc, Celerizer
+8108B8BC 2400
+D10FA63E 0057
+810FA63E 005B
+D1102CB6 003E
+81102CB4 2400
+8104F0D4 1000
+800F93CC 0000
+800F93CE 0000
+D00FA63F 004B
+800F93CC 0002
+8104F0FC 2400
+810657EE 0005
+D10D8BE8 2E03
+800C3C92 00CE,
+D30D8BE8 2E03,
+800C3C92 0000
+D10FA63E 005B
+800C3C93 001E
+D10C3C92 CE1E
+81113068 0008
+D10C3C92 CE1E
+8111306A 0031
+81062D8C 1000
+D10FA63E 0051
+811072A0 2400
+81078A50 080F
+81078A52 FC10
+81078A54 2400
+813FF040 3C04
+813FF042 8010
+813FF044 2484
+813FF046 1080
+813FF048 3C05
+813FF04A 800D
+813FF04C 24A5
+813FF04E 357F
+813FF050 8226
+813FF052 004D
+813FF054 0C02
+813FF056 9598
+813FF058 24C6
+813FF05A 0001
+813FF05C 2404
+813FF05E 0010
+813FF060 2405
+813FF062 0010
+813FF064 3C06
+813FF066 8010
+813FF068 0C01
+813FF06A F1D3
+813FF06C 24C6
+813FF06E 1080
+813FF070 9222
+813FF072 004D
+813FF074 0801
+813FF076 E296
+813FF078 0002
+813FF07A 1040
+810F8C7C FFFF
+810F8C7E FFFF
+810F8C80 FFFF
+810F8C82 FFFF
+810F8C84 FFFF
+810F8C86 FFFF
+810F8C88 FFFF
+810F8C8A FFFF
+810F8C8C FFFF
+D1103CAA 4740
+81114740 0001
+D1103CCE 4870
+81114870 0001
+D1102A3E 8011
+81114742 0001
+
+$Board: Bowser Land - Bank Loans are 0 Coins
+Author=gamemasterplc
+D11089C4 8605
+811089C4 2405
+D11089D4 8605
+811089D4 2405
+
+$Board: Bowser Land - Bowser Parade Does Not Take Coins
+Author=gamemasterplc
+D11116CE 0005
+811116CE 0000
+D11117C8 1440
+811117C8 1000
+
+$Board: Bowser Land - Free Items from Koopa Kid's Shop
+Author=gamemasterplc
+D1112134 1440
+81112134 1000
+D11121C4 1040
+811121C4 1000
+D11122B4 8605
+811122B4 2405
+D11122C4 8605
+811122C4 2405
+
+$Board: Horror Land - Always Day
+Author=gamemasterplc
+810F8CE4 0000
+
+$Board: Horror Land - Always Night
+Author=gamemasterplc
+810F8CE4 0004
+
+$Board: Mystery Land - Disable Red Space Island
+Author=gamemasterplc
+D110FE10 3AA2
+8110FE0C 1000
+
+$Board: Pirate Land - No Sushi Spaces
+Author=gamemasterplc
+D110F458 AFB6
+8110F47C 0804
+D110F458 AFB6
+8110F47E 3EF0
+
+$Board: Pirate Land - Sushi Spaces are Happening Spaces
+Author=gamemasterplc
+D012C64D 0001
+8012C64D 0004
+D012C8B1 0001
+8012C8B1 0004
+D012C9F5 0001
+8012C9F5 0004
+
+$Board: Space Land - Laser Always Fires
+Author=gamemasterplc
+D110EBE4 1440
+8110EBE4 2400
+
+$Board: Western Land - Hootenany for Free
+Author=gamemasterplc
+D110FE54 0014
+8110FE54 0000
+D110FF20 0C01
+8110FF20 2400
+
+$Board: Western Land - Train Always Goes Forward
+Author=gamemasterplc
+D1110B38 1200
+81110B34 2410
+D1110B38 1200
+81110B34 0001
+
+$Board: Western Land - Train Rides For Free
+Author=gamemasterplc
+D11108BE 0005
+811108BE 0000
+D11109B6 FFFB
+811109B6 0000
+D11109C2 FFFB
+811109C2 0000
+
+$Mechanics - Bonus Ztars
+Author=gamemasterplc
+D10FA63E 0052
+8110346A FFFF
+
+$Mechanics - Bowser's Appearing Act Aways On
+Author=gamemasterplc
+D10F93C6 0003
+810F8D16 0001
+
+$Mechanics - Bowser's Multiplying Toads Always On
+Author=gamemasterplc
+810F8D12 0001
+
+$Mechanics - Disable Music
+Author=gamemasterplc
+8100FE48 03E0
+8100FE4A 0008
+8100FE4C 2400
+
+$Mechanics - Faster Chance Time
+Author=gamemasterplc
+D110CE76 0174
+81110174 41F0
+D110CE76 0174
+81110178 41F0
+
+$Mechanics - Free Stars
+Author=gamemasterplc
+D1108FDC 1440
+81108FDC 2400
+D1107744 1440
+81107744 2400
+D1107CB0 1440
+81107CB0 2400
+D1107B00 1440
+81107B00 2400
+D11080CC 1440
+811080CC 2400
+D1107FE0 1440
+81107FE0 2400
+
+$Minigame Replacement - Bob-Omb Barrage → Look Away
+D00F93C9 0013
+800F93C9 0014
+
+$Minigame Replacement - Bowl Over → Fillet Relay
+D00F93C9 000F
+800F93C9 0017
+
+$Minigame Replacement - Bowser's Big Blast → Face Lift
+D00F93C9 0041
+800F93C9 000C
+
+$Minigame Replacement - Day at the Races → Bumper Balloon Cars
+D00F93C9 000B
+800F93C9 0008
+
+$Minigame Replacement - Honeycomb Havoc → Hexagon Heat
+D00F93C9 0032
+800F93C9 0033
+
+$Minigame Replacement - Shock, Drop or Roll → Lights Out
+D00F93C9 0015
+800F93C9 0016
+
+$Minigame Replacement - Sneak and Snore → Shy Guy Says
+D00F93C9 0037
+800F93C9 0036
+
+$Minigame: Bumper Balls - Less Friction
+Author=gamemasterplc/Celery
+D11040A2 3F75
+811040A2 3F7A
+D1104112 3F75
+81104112 3F7A
+
+$Minigame: Dizzy Dancing - Record Keeps Spinning
+Author=Rain
+D10FA63E 0036
+81107A58 41A0
+
+$Minigame: Mecha Marathon - Mash Just A
+Author=gamemasterplc
+D11040CC 0102
+81104060 1000
+
+$Minigame: Shell Shocked - Always Hard Layout
+Author=gamemasterplc
+D10F93C8 0027
+800FA656 0002
+
+$Minigame: Shock Drop or Roll - No Jumping
+Author=gamemasterplc
+D1103FBE 0038
+81103FB4 080F
+D1103FBE 0038
+81103FB6 FC00
+813FF000 8282
+813FF002 0059
+813FF004 2403
+813FF006 0034
+813FF008 0043
+813FF00A 0019
+813FF00C 0000
+813FF00E 1812
+813FF010 3C02
+813FF012 800F
+813FF014 3442
+813FF016 D2C0
+813FF018 0062
+813FF01A 1021
+813FF01C 8042
+813FF01E 0003
+813FF020 0002
+813FF022 1040
+813FF024 3C03
+813FF026 8010
+813FF028 0043
+813FF02A 1021
+813FF02C A440
+813FF02E 163C
+813FF030 0C04
+813FF032 0C40
+813FF034 2400
+813FF038 0804
+813FF03A 0FEF

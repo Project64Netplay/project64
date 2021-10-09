@@ -222,9 +222,6 @@
     <ClCompile Include="UserInterface\SupportWindow.cpp">
       <Filter>Source Files\User Interface Source</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface\WelcomeScreen.cpp">
-      <Filter>Source Files\User Interface Source</Filter>
-    </ClCompile>
     <ClCompile Include="UserInterface\WTLControls\wtl-BitmapPicture.cpp">
       <Filter>Source Files\User Interface Source\WTL Controls Source</Filter>
     </ClCompile>
@@ -538,9 +535,6 @@
     </ClInclude>
     <ClInclude Include="UserInterface\Debugger\Debugger-RegisterTabData.h">
       <Filter>Header Files\User Interface Headers\Debugger Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInterface\WelcomeScreen.h">
-      <Filter>Header Files\User Interface Headers</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface\WTLControls\wtl-BitmapPicture.h">
       <Filter>Header Files\User Interface Headers\WTL Controls Headers</Filter>

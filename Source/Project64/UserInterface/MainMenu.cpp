@@ -589,9 +589,8 @@ bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuI
     case ID_HELP_WEBSITE: ShellExecute(nullptr, L"open", L"http://www.pj64-emu.com", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_HELP_ABOUT: CAboutDlg(m_Gui->Support()).DoModal(); break;
     case ID_NETPLAY_REPLACESAVES: ShellExecute(nullptr, L"open", L"Replace.bat", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
-    case ID_NETPLAY_MPN: ShellExecute(nullptr, L"open", L"https://discord.gg/marioparty", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
-    case ID_NETPLAY_UPDATE_PLUGINS: ShellExecute(nullptr, L"open", L"UpdatePlugin.bat", nullptr, nullptr, SW_SHOWMINIMIZED); break;
-    case ID_NETPLAY_UPDATE_SAVES: ShellExecute(nullptr, L"open", L"UpdateSaves.bat", nullptr, nullptr, SW_SHOWMINIMIZED); break;
+    case ID_NETPLAY_MPN: ShellExecute(nullptr, L"open", L"https://discord.gg/F55qYKm", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
+    case ID_NETPLAY_WEBSITE: ShellExecute(nullptr, L"open", L"https://www.norahanegan.com/project64-netplay/", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_NETPLAY_UPDATE_EMULATOR:
         if (!g_Settings->LoadBool(GameRunning_CPU_Running))
             ShellExecute(nullptr, L"open", L"UpdateEmulator.bat", nullptr, nullptr, SW_SHOWMINIMIZED);
@@ -962,10 +961,6 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
     SystemMenu.push_back(MENU_ITEM(SPLITER));
     SystemMenu.push_back(MENU_ITEM(SUB_MENU, MENU_CURRENT_SAVE, EMPTY_STDSTR, &CurrentSaveMenu));
     SystemMenu.push_back(MENU_ITEM(SPLITER));
-    if (Enhancement)
-    {
-        SystemMenu.push_back(MENU_ITEM(ID_SYSTEM_ENHANCEMENT, MENU_ENHANCEMENT, m_ShortCuts.ShortCutString(ID_SYSTEM_ENHANCEMENT, RunningState)));
-    }
     SystemMenu.push_back(MENU_ITEM(ID_SYSTEM_CHEAT, MENU_CHEAT, m_ShortCuts.ShortCutString(ID_SYSTEM_CHEAT, RunningState)));
     SystemMenu.push_back(MENU_ITEM(ID_SYSTEM_GSBUTTON, MENU_GS_BUTTON, m_ShortCuts.ShortCutString(ID_SYSTEM_GSBUTTON, RunningState)));
 
@@ -1014,7 +1009,7 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
         Item.SetItemEnabled(false);
     }
     OptionMenu.push_back(Item);
-
+    OptionMenu.push_back(MENU_ITEM(ID_SYSTEM_ENHANCEMENT, MENU_ENHANCEMENT, m_ShortCuts.ShortCutString(ID_SYSTEM_ENHANCEMENT, RunningState)));
     OptionMenu.push_back(MENU_ITEM(SPLITER));
     if (!inBasicMode)
     {
@@ -1290,30 +1285,16 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
 
     // Help menu
     MenuItemList HelpMenu;
-    HelpMenu.push_back(MENU_ITEM(ID_HELP_SUPPORT_PROJECT64, MENU_SUPPORT_PROJECT64));
-    HelpMenu.push_back(MENU_ITEM(ID_HELP_DISCORD, MENU_DISCORD));
-    HelpMenu.push_back(MENU_ITEM(ID_HELP_WEBSITE, MENU_WEBSITE));
+    HelpMenu.push_back(MENU_ITEM(ID_NETPLAY_MPN, MENU_MPN));
+    HelpMenu.push_back(MENU_ITEM(ID_NETPLAY_WEBSITE, MENU_NETPLAY_WEBSITE));
+    HelpMenu.push_back(MENU_ITEM(SPLITER));
+    HelpMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_EMULATOR, MENU_UPDATE_EMULATOR));
     HelpMenu.push_back(MENU_ITEM(SPLITER));
     HelpMenu.push_back(MENU_ITEM(ID_HELP_ABOUT, MENU_ABOUT_PJ64));
-
-    // Netplay Menu
-    MenuItemList NetplayMenu;
-
-    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_MPN, MENU_MPN));
-    NetplayMenu.push_back(MENU_ITEM(SPLITER));
-    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_REPLACESAVES, MENU_REPLACESAVES));
-    NetplayMenu.push_back(MENU_ITEM(ID_SYSTEM_CHEAT, MENU_CHEAT, m_ShortCuts.ShortCutString(ID_SYSTEM_CHEAT, RunningState)));
-    NetplayMenu.push_back(MENU_ITEM(SPLITER));
-    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_PLUGINS, MENU_UPDATE_PLUGINS));
-    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_SAVES, MENU_UPDATE_SAVES));
-    NetplayMenu.push_back(MENU_ITEM(ID_NETPLAY_UPDATE_EMULATOR, MENU_UPDATE_EMULATOR));
 
     // Main title bar Menu
     MenuItemList MainTitleMenu;
     Item.Reset(SUB_MENU, MENU_FILE, EMPTY_STDSTR, &FileMenu);
-    if (RomLoading) { Item.SetItemEnabled(false); }
-    MainTitleMenu.push_back(Item);
-    Item.Reset(SUB_MENU, MENU_NETPLAY, EMPTY_STDSTR, &NetplayMenu);
     if (RomLoading) { Item.SetItemEnabled(false); }
     MainTitleMenu.push_back(Item);
     if (CPURunning)

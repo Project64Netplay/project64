@@ -58,7 +58,7 @@ void CLanguage::LoadDefaultStrings(void)
     DEF_STR(MENU_RESET_SOFT, "&Soft Reset");
     DEF_STR(MENU_RESET_HARD, "&Hard Reset");
     DEF_STR(MENU_SWAPDISK, "Swap &Disk");
-    DEF_STR(MENU_ENHANCEMENT, "&Enhancements...");
+    DEF_STR(MENU_ENHANCEMENT, "&Modification Settings");
 
     // Options menu
     DEF_STR(MENU_OPTIONS, "&Options");
@@ -86,11 +86,10 @@ void CLanguage::LoadDefaultStrings(void)
 
     //Netplay Menu
     DEF_STR(MENU_NETPLAY, "&Netplay");
-    DEF_STR(MENU_MPN, "Mario Party Netplay &Discord");
+    DEF_STR(MENU_MPN, "Netplay &Discord");
+    DEF_STR(MENU_NETPLAY_WEBSITE, "Netplay &Website");
     DEF_STR(MENU_REPLACESAVES, "&Replace Save Files");
     DEF_STR(MENU_UPDATE_EMULATOR, "Update &Emulator");
-    DEF_STR(MENU_UPDATE_PLUGINS, "Update &Plugins...");
-    DEF_STR(MENU_UPDATE_SAVES, "Update &Save Files...");
 
     // Current save slot menu
     DEF_STR(MENU_SLOT_DEFAULT, "Default");
@@ -110,10 +109,9 @@ void CLanguage::LoadDefaultStrings(void)
     DEF_STR(POPUP_PLAY, "Play Game");
     DEF_STR(POPUP_INFO, "ROM Information");
     DEF_STR(POPUP_SETTINGS, "Edit Game Settings");
-    DEF_STR(POPUP_CHEATS, "Edit Cheats");
     DEF_STR(POPUP_GFX_PLUGIN, "Graphics Plugin");
     DEF_STR(POPUP_PLAYDISK, "Play Game with Disk");
-    DEF_STR(POPUP_ENHANCEMENTS, "Pick Enhancements");	
+    DEF_STR(POPUP_ENHANCEMENTS, "Pick Modifications");	
 
     // Alternate name to save slot
     DEF_STR(SAVE_SLOT_DEFAULT, "Save Slot - Default");
@@ -452,7 +450,7 @@ void CLanguage::LoadDefaultStrings(void)
 
     /*** Enhancements ***/
 
-    DEF_STR(ENHANCEMENT_TITLE, "Enhancements");
+    DEF_STR(ENHANCEMENT_TITLE, "Modifications");
 
     /*** Messages ***/
 
