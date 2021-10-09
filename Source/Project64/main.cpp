@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <Project64-core/AppInit.h>
-#include "UserInterface/WelcomeScreen.h"
 #include "Settings/UISettings.h"
 #include "Plugins/PluginList.h"
 
@@ -10,10 +9,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
     {
         CoInitialize(nullptr);
         AppInit(&Notify(), CPath(CPath::MODULE_DIRECTORY), __argc, __argv);
-        if (!g_Lang->IsLanguageLoaded())
-        {
-            WelcomeScreen().DoModal();
-        }
 
         // Create the main window with menu
 		
