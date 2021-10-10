@@ -25,7 +25,8 @@ void RegisterUISettings (void)
     // Settings location
     AddUISetting(Setting_PluginPageFirst, new CSettingTypeApplication("Settings", "Plugin Page First", false));
     AddUISetting(Setting_DisableScrSaver, new CSettingTypeApplication("Settings", "Disable Screen Saver", (uint32_t)true));
-    AddUISetting(Setting_AutoSleep, new CSettingTypeApplication("Settings", "Auto Sleep", (uint32_t)true));
+
+    AddUISetting(Setting_AutoSleep, new CSettingTypeApplication("Settings", "Auto Sleep", (uint32_t)false));
     AddUISetting(Setting_AutoFullscreen, new CSettingTypeApplication("Settings", "Auto Full Screen", (uint32_t)false));
 
     // RDB settings
