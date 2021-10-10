@@ -874,6 +874,8 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
         }
     }
     FileMenu.push_back(MENU_ITEM(SPLITER));
+    FileMenu.push_back(MENU_ITEM(ID_NETPLAY_REPLACESAVES, MENU_REPLACESAVES));
+    FileMenu.push_back(MENU_ITEM(SPLITER));
     FileMenu.push_back(MENU_ITEM(ID_FILE_EXIT, MENU_EXIT, m_ShortCuts.ShortCutString(ID_FILE_EXIT, RunningState)));
 
     // Current save
