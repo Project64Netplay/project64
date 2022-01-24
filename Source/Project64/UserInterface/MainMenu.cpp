@@ -288,11 +288,6 @@ void CMainMenu::OnSettings(HWND hWnd)
     CSettingConfig().Display(hWnd);
 }
 
-void CMainMenu::OnSupportProject64(HWND hWnd)
-{
-    CSupportWindow(m_Gui->Support()).Show(hWnd, false);
-}
-
 bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuID)
 {
     switch (MenuID)
@@ -538,16 +533,20 @@ bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuI
         g_Notify->DisplayMessage(3, stdstr_f(GS(MENU_SLOT_SAVE), GetSaveSlotString((MenuID - ID_CURRENT_SAVE_1) + 1).c_str()).c_str());
         g_Settings->SaveDword(Game_CurrentSaveState, (DWORD)((MenuID - ID_CURRENT_SAVE_1) + 1));
         break;
-    case ID_HELP_SUPPORT_PROJECT64: OnSupportProject64(hWnd); break;
     case ID_HELP_DISCORD: ShellExecute(nullptr, L"open", L"https://discord.gg/Cg3zquF", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_HELP_WEBSITE: ShellExecute(nullptr, L"open", L"http://www.pj64-emu.com", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_HELP_ABOUT: CAboutDlg(m_Gui->Support()).DoModal(); break;
-    case ID_NETPLAY_REPLACESAVES: ShellExecute(nullptr, L"open", L"Replace.bat", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
+    case ID_NETPLAY_REPLACESAVES:
+        if (!g_Settings->LoadBool(GameRunning_CPU_Running))
+            ShellExecute(nullptr, L"open", L"Replace.bat", nullptr, nullptr, SW_SHOWMINIMIZED);
+        else
+            g_Notify->DisplayMessage(5, "Saves  can only be replaced while a game is not running.");
+        break;
     case ID_NETPLAY_MPN: ShellExecute(nullptr, L"open", L"https://discord.gg/F55qYKm", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_NETPLAY_WEBSITE: ShellExecute(nullptr, L"open", L"https://www.norahanegan.com/project64-netplay/", nullptr, nullptr, SW_SHOWMAXIMIZED); break;
     case ID_NETPLAY_UPDATE_EMULATOR:
         if (!g_Settings->LoadBool(GameRunning_CPU_Running))
-            ShellExecute(nullptr, L"open", L"UpdateEmulator.bat", nullptr, nullptr, SW_SHOWMINIMIZED);
+            ShellExecute(nullptr, L"open", L"Update Emulator.bat", nullptr, nullptr, SW_SHOWMINIMIZED);
         else
             g_Notify->DisplayMessage(5, "Emulator can only be updated while a game is not running.");
     break;

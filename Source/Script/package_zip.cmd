@@ -37,6 +37,8 @@ md "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
+md "%base_dir%\Bin\Package\Save"
+md "%base_dir%\Bin\Package\Save\Backup"
 
 IF EXIST "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64" (
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64"
@@ -53,7 +55,6 @@ copy "%base_dir%\Config\Cheats\*.cht" "%base_dir%\Bin\Package\Config\Cheats"
 copy "%base_dir%\Config\Enhancements\*.enh" "%base_dir%\Bin\Package\Config\Enhancements"
 copy "%base_dir%\Config\Project64.rdb" "%base_dir%\Bin\Package\Config"
 copy "%base_dir%\Config\Project64.rdx" "%base_dir%\Bin\Package\Config"
-copy "%base_dir%\Lang\*.pj.Lang" "%base_dir%\Bin\Package\Lang"
 copy "%base_dir%\Plugin%VSPlatform%\Audio\Jabo_Dsound.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
 copy "%base_dir%\Plugin%VSPlatform%\GFX\GlideN64.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
 copy "%base_dir%\Plugin%VSPlatform%\Input\PJ64_NRage.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
@@ -64,13 +65,12 @@ copy "%base_dir%\Plugin%VSPlatform%\Updater\7z.exe" "%base_dir%\Bin\Package\Plug
 copy "%base_dir%\Plugin%VSPlatform%\Updater\wget.exe" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Updater"
 
 copy "%base_dir%\Replace.bat" "%base_dir%\Bin\Package\"
-copy "%base_dir%\Updater.bat" "%base_dir%\Bin\Package\"
+copy "%base_dir%\Update Emulator.bat" "%base_dir%\Bin\Package\"
 
 copy "%base_dir%\Save\*.eep" "%base_dir%\Bin\Package\Save"
 copy "%base_dir%\Save\*.sra" "%base_dir%\Bin\Package\Save"
 copy "%base_dir%\Save\Backup\*.eep" "%base_dir%\Bin\Package\Save\Backup"
 copy "%base_dir%\Save\Backup\*.sra" "%base_dir%\Bin\Package\Save\Backup"
-
 cd %base_dir%\Bin\Package
 "%zip%" a -tzip -r "%base_dir%\Package\%ZipFileName%" *
 cd /d %current_dir%

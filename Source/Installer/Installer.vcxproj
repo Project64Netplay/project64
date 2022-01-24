@@ -35,7 +35,7 @@
       <PrecompiledHeader />
     </ClCompile>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)Source/Script/package_zip.cmd" Project64-MPN.zip</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)Source/Script/package_zip.cmd" Project64-Netplay.zip</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
