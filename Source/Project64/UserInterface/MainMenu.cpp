@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "RomInformation.h"
-#include "Debugger/Breakpoints.h"
-#include "Debugger/ScriptSystem.h"
 #include "DiscordRPC.h"
 #include <Project64-core/N64System/N64Disk.h>
 #include <Project64\UserInterface\About.h>
@@ -523,50 +521,6 @@ bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuI
     case ID_DEBUG_DISABLE_GAMEFIX:
         g_Settings->SaveBool(Debugger_DisableGameFixes, !g_Settings->LoadBool(Debugger_DisableGameFixes));
         break;
-    case ID_DEBUGGER_TRACE_MD5: SetTraceModuleSetttings(Debugger_TraceMD5); break;
-    case ID_DEBUGGER_TRACE_SETTINGS: SetTraceModuleSetttings(Debugger_TraceSettings); break;
-    case ID_DEBUGGER_TRACE_UNKNOWN: SetTraceModuleSetttings(Debugger_TraceUnknown); break;
-    case ID_DEBUGGER_TRACE_APPINIT: SetTraceModuleSetttings(Debugger_TraceAppInit); break;
-    case ID_DEBUGGER_TRACE_APPCLEANUP: SetTraceModuleSetttings(Debugger_TraceAppCleanup); break;
-    case ID_DEBUGGER_TRACE_N64SYSTEM: SetTraceModuleSetttings(Debugger_TraceN64System); break;
-    case ID_DEBUGGER_TRACE_PLUGINS: SetTraceModuleSetttings(Debugger_TracePlugins); break;
-    case ID_DEBUGGER_TRACE_GFXPLUGIN: SetTraceModuleSetttings(Debugger_TraceGFXPlugin); break;
-    case ID_DEBUGGER_TRACE_AUDIOPLUGIN: SetTraceModuleSetttings(Debugger_TraceAudioPlugin); break;
-    case ID_DEBUGGER_TRACE_CONTROLLERPLUGIN: SetTraceModuleSetttings(Debugger_TraceControllerPlugin); break;
-    case ID_DEBUGGER_TRACE_RSPPLUGIN: SetTraceModuleSetttings(Debugger_TraceRSPPlugin); break;
-    case ID_DEBUGGER_TRACE_RSP: SetTraceModuleSetttings(Debugger_TraceRSP); break;
-    case ID_DEBUGGER_TRACE_AUDIO: SetTraceModuleSetttings(Debugger_TraceAudio); break;
-    case ID_DEBUGGER_TRACE_REGISTERCACHE: SetTraceModuleSetttings(Debugger_TraceRegisterCache); break;
-    case ID_DEBUGGER_TRACE_RECOMPILER: SetTraceModuleSetttings(Debugger_TraceRecompiler); break;
-    case ID_DEBUGGER_TRACE_TLB: SetTraceModuleSetttings(Debugger_TraceTLB); break;
-    case ID_DEBUGGER_TRACE_PROTECTEDMEM: SetTraceModuleSetttings(Debugger_TraceProtectedMEM); break;
-    case ID_DEBUGGER_TRACE_USERINTERFACE: SetTraceModuleSetttings(Debugger_TraceUserInterface); break;
-
-    case ID_DEBUGGER_APPLOG_FLUSH:
-        g_Settings->SaveBool(Debugger_AppLogFlush, !g_Settings->LoadBool(Debugger_AppLogFlush));
-        break;
-    case ID_DEBUGGER_LOGOPTIONS: m_Gui->EnterLogOptions(); break;
-    case ID_DEBUGGER_GENERATELOG:
-        g_Settings->SaveBool(Logging_GenerateLog, !g_Settings->LoadBool(Logging_GenerateLog));
-        break;
-    case ID_DEBUGGER_DUMPMEMORY: g_Debugger->OpenMemoryDump(); break;
-    case ID_DEBUGGER_SEARCHMEMORY: g_Debugger->OpenMemorySearch(); break;
-    case ID_DEBUGGER_MEMORY: g_Debugger->OpenMemoryWindow(); break;
-    case ID_DEBUGGER_TLBENTRIES: g_Debugger->OpenTLBWindow(); break;
-    case ID_DEBUGGER_INTERRUPT_SP: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_SP); break;
-    case ID_DEBUGGER_INTERRUPT_SI: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_SI); break;
-    case ID_DEBUGGER_INTERRUPT_AI: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_AI); break;
-    case ID_DEBUGGER_INTERRUPT_VI: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_VI); break;
-    case ID_DEBUGGER_INTERRUPT_PI: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_PI); break;
-    case ID_DEBUGGER_INTERRUPT_DP: g_BaseSystem->ExternalEvent(SysEvent_Interrupt_DP); break;
-    case ID_DEBUGGER_BREAKPOINTS: g_Debugger->OpenCommandWindow(); break;
-    case ID_DEBUGGER_SCRIPTS: g_Debugger->OpenScriptsWindow(); break;
-    case ID_DEBUGGER_SYMBOLS: g_Debugger->OpenSymbolsWindow(); break;
-    case ID_DEBUGGER_DMALOG: g_Debugger->OpenDMALogWindow(); break;
-    case ID_DEBUGGER_CPULOG: g_Debugger->OpenCPULogWindow(); break;
-    case ID_DEBUGGER_EXCBREAKPOINTS: g_Debugger->OpenExcBreakpointsWindow(); break;
-    case ID_DEBUGGER_STACKTRACE: g_Debugger->OpenStackTraceWindow(); break;
-    case ID_DEBUGGER_STACKVIEW: g_Debugger->OpenStackViewWindow(); break;
     case ID_CURRENT_SAVE_DEFAULT:
         g_Notify->DisplayMessage(3, stdstr_f(GS(MENU_SLOT_SAVE), GetSaveSlotString(MenuID - ID_CURRENT_SAVE_DEFAULT).c_str()).c_str());
         g_Settings->SaveDword(Game_CurrentSaveState, (DWORD)(MenuID - ID_CURRENT_SAVE_DEFAULT));

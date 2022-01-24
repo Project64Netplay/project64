@@ -26,6 +26,18 @@
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ImportGroup Label="PropertySheets">
     <Import Project="$(SolutionDir)PropertySheets\Platform.$(Configuration).props" />
@@ -56,8 +68,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="UserInterface\About.cpp" />
-    <ClCompile Include="UserInterface\Debugger\CPULog.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-CPULogView.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Plugins\PluginList.cpp" />
     <ClCompile Include="Settings\GuiSettings.cpp" />
@@ -67,30 +77,6 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UserInterface\CheatUI.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Assembler.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Breakpoints.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-AddBreakpoint.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-AddSymbol.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-Commands.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-DMALogView.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-ExceptionBreakpoints.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-MemoryDump.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-MemorySearch.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-RegisterTabs.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-Scripts.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-StackTrace.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-StackView.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-Symbols.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-TLB.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger-ViewMemory.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Debugger.cpp" />
-    <ClCompile Include="UserInterface\Debugger\DebugMMU.cpp" />
-    <ClCompile Include="UserInterface\Debugger\DMALog.cpp" />
-    <ClCompile Include="UserInterface\Debugger\MemoryScanner.cpp" />
-    <ClCompile Include="UserInterface\Debugger\ScriptHook.cpp" />
-    <ClCompile Include="UserInterface\Debugger\ScriptInstance.cpp" />
-    <ClCompile Include="UserInterface\Debugger\ScriptSystem.cpp" />
-    <ClCompile Include="UserInterface\Debugger\Symbols.cpp" />
     <ClCompile Include="UserInterface\EnhancementUI.cpp" />
     <ClCompile Include="UserInterface\MainWindow.cpp" />
     <ClCompile Include="UserInterface\LoggingUI.cpp" />
@@ -127,8 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserInterface\About.h" />
-    <ClInclude Include="UserInterface\Debugger\CPULog.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-CPULogView.h" />
     <ClInclude Include="N64System.h" />
     <ClInclude Include="Settings\GuiSettings.h" />
     <ClInclude Include="Settings\NotificationSettings.h" />
@@ -137,34 +121,6 @@
     <ClInclude Include="Support.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="UserInterface\CheatUI.h" />
-    <ClInclude Include="UserInterface\Debugger\Assembler.h" />
-    <ClInclude Include="UserInterface\Debugger\Breakpoints.h" />
-    <ClInclude Include="UserInterface\Debugger\DebugDialog.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-AddBreakpoint.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-AddSymbol.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-Commands.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-DMALogView.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-ExceptionBreakpoints.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-MemoryDump.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-MemorySearch.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-RegisterTabs.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-Scripts.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-StackTrace.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-StackView.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-Symbols.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-RegisterTabData.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-TLB.h" />
-    <ClInclude Include="UserInterface\Debugger\Debugger-ViewMemory.h" />
-    <ClInclude Include="UserInterface\Debugger\debugger.h" />
-    <ClInclude Include="UserInterface\Debugger\DebuggerUI.h" />
-    <ClInclude Include="UserInterface\Debugger\DebugMMU.h" />
-    <ClInclude Include="UserInterface\Debugger\DMALog.h" />
-    <ClInclude Include="UserInterface\Debugger\MemoryScanner.h" />
-    <ClInclude Include="UserInterface\Debugger\OpInfo.h" />
-    <ClInclude Include="UserInterface\Debugger\ScriptHook.h" />
-    <ClInclude Include="UserInterface\Debugger\ScriptInstance.h" />
-    <ClInclude Include="UserInterface\Debugger\ScriptSystem.h" />
-    <ClInclude Include="UserInterface\Debugger\Symbols.h" />
     <ClInclude Include="UserInterface\EnhancementUI.h" />
     <ClInclude Include="UserInterface\MainWindow.h" />
     <ClInclude Include="UserInterface\LoggingUI.h" />

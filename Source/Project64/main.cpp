@@ -15,8 +15,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
         WriteTrace(TraceUserInterface, TraceDebug, "Create main window");
         CMainGui MainWindow(true, stdstr_f("Project64 %s", VER_FILE_VERSION_STR).c_str()), HiddenWindow(false);
         CMainMenu MainMenu(&MainWindow);
-        CDebuggerUI Debugger;
-        g_Debugger = &Debugger;
         g_Plugins->SetRenderWindows(&MainWindow, &HiddenWindow);
         Notify().SetMainWindow(&MainWindow);
         bool isROMLoaded = false;
